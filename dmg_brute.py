@@ -1,14 +1,14 @@
-#Author: Girish (z3nc1ph3r)
+# #Author: Girish (z3nc1ph3r)
 import os
 import sys
 import pexpect
 
 
-target_dmg = raw_input("Enter taget dmg file path: ")
+target_dmg = input("Enter taget dmg file path: ")
 
 #file existance validation in if condition, when validated getting the file name out of path
 if not (os.path.exists(target_dmg.strip()) and os.path.isfile(target_dmg.strip())):
-    print "File doesn't exist"
+    print("File doesn't exist")
     exit()
 else:
     filename_w_ext = os.path.basename(target_dmg.strip())
@@ -16,10 +16,10 @@ else:
     dmg_file_name = filename+file_extension
 
 
-word_list = raw_input("Enter wordlist file path: ")
+word_list = input("Enter wordlist file path: ")
 #file existance validation in if condition
 if not (os.path.exists(word_list.strip()) and os.path.isfile(word_list.strip())):
-    print "File doesn't exist"
+    print("File doesn't exist")
     exit()
 else:
     # reading wordlist file line by line and checking for correct passoword using hdiutil binary
@@ -31,7 +31,7 @@ else:
             child.expect(':')
             i = child.expect([pexpect.EOF,'hdiutil: verify failed - Authentication error'])
             if i == 0:
-                print line.strip("\n") + " found :)"
+                print(line.strip("\n") + " found")
                 exit()
             else:
-                print line.strip("\n") + " not working"
+                print(line.strip("\n") + " not working")
